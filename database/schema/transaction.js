@@ -1,35 +1,38 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const TransactionSchema = new Schema({
+const TransactionSchema = new Schema(
+  {
     sender: {
-        type: Schema.Types.ObjectId,
-        required: true
+      type: Schema.Types.ObjectId,
+      required: true,
     },
     receiver: {
-        type: Schema.Types.ObjectId,
-        required: true
+      type: Schema.Types.ObjectId,
+      required: true,
     },
     date: {
-        type: Date,
-        default: Date.now,
-        required: true
+      type: Date,
+      default: Date.now,
+      required: true,
     },
     amount: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     type: {
-        type: String,
-        enum: ['saving', 'expense'],
-        required: true
+      type: String,
+      enum: ['saving', 'balance', 'expense'],
+      required: true,
     },
     status: {
-        type: String,
-        enum: ['success', 'failure', 'pending']
-    }
-}, {
-    collection: 'Transactions'
-});
+      type: String,
+      enum: ['success', 'failure', 'pending'],
+    },
+  },
+  {
+    collection: 'Transactions',
+  },
+);
 
 module.exports = TransactionSchema;
